@@ -1,0 +1,35 @@
+{% extends 'registration/base.html' %}
+{% block content %}
+<h1>Usuário logado</h1>
+<table class="table table-striped table-hover table-dark">
+    <thead>
+        <tr>
+            <th scope="col">ID #</th>
+            <th scope="col">Username</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">User Active</th>
+            <th scope="col">Date Joined</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody >
+        {% for user in users %}
+        <tr>
+            <td>{{user.id}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.first_name}}</td>
+            <td>{{user.last_name}}</td>
+            <td>{{user.is_active}}</td>
+            <td>{{user.date_joined | date:"M d, Y"}}</td>
+            <td class="d-flex justify-content-around ">
+                <a href="{% url 'delete_user' user.id %}" type="submit" class="btn btn-danger">Delete</a>
+                <button type="submit" class="btn btn-info">Reset Password</button>
+                <a href="{% url 'update_user' user.id %}" type="submit" class="btn btn-primary">Edit</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'logout' %}" type="submit" class="btn btn-primary">Logout</a>
+{% endblock %}
