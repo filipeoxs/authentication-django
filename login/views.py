@@ -1,4 +1,3 @@
-from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth import login, authenticate, logout
 from .form import UserForm,UpdateUserForm
